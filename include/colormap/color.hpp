@@ -56,7 +56,7 @@ namespace colormap {
             os << long(c.val) << ' ';
             return os;
         }
-    private:
+    public:
         T val;
     };
 
@@ -104,6 +104,18 @@ namespace colormap {
         template <typename Float,
                   typename = typename std::enable_if<std::is_floating_point<Float>::value>::type>
         color (Float r, Float g, Float b) : Base {{{ {r}, {g}, {b} }}} {}
+
+        auto r() const {
+            return Base::channels[0].val;
+        }
+
+        auto g() const {
+            return Base::channels[1].val;
+        }
+
+        auto b() const {
+            return Base::channels[2].val;
+        }
 
         friend color<space::rgba, T>;
     };
